@@ -10,4 +10,6 @@ public class EcoRentApplication {
 		SpringApplication.run(EcoRentApplication.class, args);
 	}
 
+	
+
 }
