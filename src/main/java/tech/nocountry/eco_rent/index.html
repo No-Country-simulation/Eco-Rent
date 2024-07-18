@@ -1,1 +1,91 @@
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum pariatur atque sint, dignissimos possimus voluptate sapiente minima sunt magnam maiores assumenda? Aliquam numquam, expedita exercitationem assumenda odit distinctio impedit vel?
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco Rent</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+</head>
+
+<body>
+    
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Bicicletas</a></li>
+                <li><a href="#">Precios</a></li>
+                <li><a href="#">Ubicaciones</a></li>
+                <li><a href="#">Ofertas</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Slider main container -->
+    <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide"><img src="https://cdn-site.localiza.com/wp-content/uploads/2024/07/BANNER-WEB-MENSUALES-COLOMBIA_HOME-1920X616.png" alt="Slide 1"></div>
+            <div class="swiper-slide"><img src="https://cdn-site.localiza.com/wp-content/uploads/2024/04/Localiza_DiaADIa_Piezas_LineaDeWhatsApp_correciones_Mesa-de-trabajo-1-copia-6.png" alt="Slide 2"></div>
+            <div class="swiper-slide"><img src="https://img.freepik.com/vector-gratis/diseno-plantilla-tienda-bicicletas_23-2150745848.jpg?w=826&t=st=1721332301~exp=1721332901~hmac=17e66fa9c28c38872a967282c15ce37038a1d036f7c362e3363137650b51a4d6" alt="Slide 3"></div>
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+  
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+  
+        <!-- If we need scrollbar -->
+        <div class="swiper-scrollbar"></div>
+    </div>
+
+    <section class="banner">
+        <h1>Eco Rent, Alquila tu Bicicleta</h1>
+        <p>Explora la ciudad de manera sostenible y saludable</p>
+        <button>Reservar Ahora</button>
+    </section>
+
+    <section class="info">
+        <div class="info-box">
+            <h2>Eco-Friendly</h2>
+            <p>Contribuye al medio ambiente alquilando una bicicleta y reduce tu huella de carbono.</p>
+        </div>
+        <div class="info-box">
+            <h2>Ahorro</h2>
+            <p>Alquila una bicicleta a precios asequibles y evita los costos de mantenimiento de un vehículo.</p>
+        </div>
+        <div class="info-box">
+            <h2>Conveniencia</h2>
+            <p>Encuentra y alquila bicicletas fácilmente desde nuestra aplicación móvil.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>Eco Rent © 2024. Todos los derechos reservados.</p>
+        <p>Contacto: info@ecorent.com | Teléfonos: 01 8000 12345</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.swiper', {
+            direction: 'horizontal',
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            scrollbar: {
+                el: '.swiper-scrollbar',
+            },
+        });
+    </script>
+</body>
+</html>

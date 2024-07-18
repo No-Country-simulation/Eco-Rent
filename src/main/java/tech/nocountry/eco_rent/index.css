@@ -1,0 +1,109 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.swiper {
+    width: 100%;
+    height: 400px;
+}
+
+.swiper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+header {
+    background-color: #389800;
+    padding: 1rem;
+}
+
+header nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+header nav ul li {
+    margin: 0;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.banner {
+    background: url('./src/img/banner-image.jpg') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    padding: 5rem 0;
+}
+
+.banner h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    color: #109104; 
+}
+
+.banner p {
+    font-size: 1.2rem;
+    color: #1a1818; 
+}
+
+.info {
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem;
+    background-color: #f2f2f2;
+}
+
+.info-box {
+    width: 30%;
+    text-align: center;
+    padding: 1rem;
+}
+
+.info-box h2 {
+    color: #004e98;
+}
+
+footer {
+    background-color: #389800;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+.banner button {
+    padding: 17px 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    border: 0;
+    background-color: rgb(244, 255, 225);
+    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 15px;
+    transition: all 0.5s ease;
+}
+
+.banner button:hover {
+    letter-spacing: 3px;
+    background-color: hsl(91, 100%, 49%);
+    color: hsl(88, 63%, 23%);
+    box-shadow: hsl(91, 100%, 49%) 0px 7px 29px 0px;
+}
+
+.banner button:active {
+    letter-spacing: 3px;
+    background-color: hsl(91, 100%, 49%);
+    color: hsl(0, 0%, 100%);
+    box-shadow: hsl(91, 100%, 49%) 0px 0px 0px 0px;
+    transform: translateY(10px);
+    transition: 100ms;
+}
