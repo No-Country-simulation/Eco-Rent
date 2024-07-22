@@ -42,4 +42,9 @@ public class AlquilerBicicletaController {
 
         return "redirect:/exito";
     }
+
+    @GetMapping("/exito")
+    public String exito() {
+        return "exito";
+    }
 }
