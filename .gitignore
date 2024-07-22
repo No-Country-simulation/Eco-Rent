@@ -56,3 +56,5 @@ Thumbs.db
 
 # Ignorar archivo .env #
 .env
+
+/src/main/resources/application-dev.properties
