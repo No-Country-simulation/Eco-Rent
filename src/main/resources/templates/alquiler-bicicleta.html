@@ -2,19 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-
-
+    <title>Alquiler de Bicicletas</title>
     <link rel="stylesheet" href="../static/css/styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-          integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-
 </head>
 <body>
-<div th:replace="~{fragments/navbar :: navbar}"></div>
-<div class="main-content">
-
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="container mt-5">
     <h1>Alquiler de bicicletas</h1>
     <form action="/alquiler-bicicleta" method="post" th:object="${alquiler}" novalidate class="needs-validation" novalidate>
         <div class="form-group">
@@ -60,6 +53,6 @@
         <button type="submit" class="btn btn-primary">Alquilar</button>
     </form>
 </div>
-<div th:replace="~{fragments/footer :: footer}"></div>
+<div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>
