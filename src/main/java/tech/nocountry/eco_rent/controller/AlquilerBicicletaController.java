@@ -32,9 +32,15 @@ public class AlquilerBicicletaController {
 
   @GetMapping("/alquiler-bicicleta")
   public String alquilerBicicleta(Model model) {
-    model.addAttribute("tiposBicicleta", TipoBicicleta.values());
-    model.addAttribute("alquiler", new Alquiler());
-    return "alquiler-bicicleta";
+    try {
+      model.addAttribute("tiposBicicleta", TipoBicicleta.values());
+      model.addAttribute("alquiler", new Alquiler());
+      return "alquiler-bicicleta";
+    } catch (Exception e) {
+      // Log the error
+      System.err.println("Error in alquilerBicicleta method: " + e.getMessage());
+      return "error";
+    }
   }
 
   @PostMapping("/alquiler-bicicleta")
