@@ -10,22 +10,24 @@ import tech.nocountry.eco_rent.model.Alquiler;
 import tech.nocountry.eco_rent.model.TipoBicicleta;
 import org.springframework.ui.Model;
 import tech.nocountry.eco_rent.repository.AlquilerRepository;
+import tech.nocountry.eco_rent.service.EmailService;
+import tech.nocountry.eco_rent.service.GeneradorTokenService;
 
 @Controller
 public class AlquilerBicicletaController {
 
   private final AlquilerRepository alquilerRepository;
+  private final GeneradorTokenService tokenService;
+  private final EmailService emailService;
 
   @Autowired
-  public AlquilerBicicletaController(AlquilerRepository alquilerRepository) {
+  public AlquilerBicicletaController(
+      AlquilerRepository alquilerRepository,
+      GeneradorTokenService tokenService,
+      EmailService emailService) {
     this.alquilerRepository = alquilerRepository;
-  }
-
-  @GetMapping("/alquiler-bicicleta")
-  public String alquilerBicicleta(Model model) {
-    model.addAttribute("tiposBicicleta", TipoBicicleta.values());
-    model.addAttribute("alquiler", new Alquiler());
-    return "alquiler-bicicleta";
+    this.tokenService = tokenService;
+    this.emailService = emailService;
   }
 
   @PostMapping("/alquiler-bicicleta")
@@ -38,8 +40,18 @@ public class AlquilerBicicletaController {
       return "alquiler-bicicleta";
     }
 
+    // Save the rental
     alquilerRepository.save(alquiler);
 
+    // Generate token
+    String token = tokenService.generateToken();
+
+    // Send email
+    String subject = "Confirmación de Alquiler de Bicicleta";
+    String text = "Gracias por alquilar una bicicleta. Su token de confirmación es: " + token;
+    emailService.sendEmail(alquiler.getEmail(), subject, text);
+
+    model.addAttribute("token", token);
     return "redirect:/exito";
   }
 
