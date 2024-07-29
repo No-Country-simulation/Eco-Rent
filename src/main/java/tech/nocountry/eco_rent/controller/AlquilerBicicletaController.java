@@ -30,6 +30,13 @@ public class AlquilerBicicletaController {
     this.emailService = emailService;
   }
 
+  @GetMapping("/alquiler-bicicleta")
+  public String alquilerBicicleta(Model model) {
+    model.addAttribute("tiposBicicleta", TipoBicicleta.values());
+    model.addAttribute("alquiler", new Alquiler());
+    return "alquiler-bicicleta";
+  }
+
   @PostMapping("/alquiler-bicicleta")
   public String alquilerBicicletaForm(
       @Valid Alquiler alquiler, BindingResult bindingResult, Model model) {
