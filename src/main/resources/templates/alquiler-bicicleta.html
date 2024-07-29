@@ -9,7 +9,8 @@
 <div th:replace="fragments/navbar :: navbar"></div>
 <div class="container mt-5">
     <h1>Alquiler de bicicletas</h1>
-    <form action="/alquiler-bicicleta" method="post" th:object="${alquiler}" novalidate class="needs-validation" novalidate>
+    <form action="/alquiler-bicicleta" method="post" th:object="${alquiler}" novalidate class="needs-validation"
+          novalidate>
         <div class="form-group">
             <label for="nombre">Nombre:</label>
             <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
@@ -38,7 +39,8 @@
         <div class="form-group">
             <label for="fecha-entrega">Fecha Entrega:</label>
             <input type="date" class="form-control" id="fecha-entrega" th:field="*{fechaEntrega}" required>
-            <div class="invalid-feedback" th:if="${#fields.hasErrors('fechaEntrega')}" th:errors="*{fechaEntrega}"></div>
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('fechaEntrega')}"
+                 th:errors="*{fechaEntrega}"></div>
         </div>
         <div class="form-group">
             <label for="bicicleta">Bicicleta:</label>
@@ -48,7 +50,8 @@
                     <option th:value="${tipo.name()}" th:text="${tipo.getDescripcion()}"></option>
                 </th:block>
             </select>
-            <div class="invalid-feedback" th:if="${#fields.hasErrors('tipoBicicleta')}" th:errors="*{tipoBicicleta}"></div>
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('tipoBicicleta')}"
+                 th:errors="*{tipoBicicleta}"></div>
         </div>
         <button type="submit" class="btn btn-primary">Alquilar</button>
     </form>

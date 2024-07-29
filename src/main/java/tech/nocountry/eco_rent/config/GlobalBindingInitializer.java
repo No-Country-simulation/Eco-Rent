@@ -10,8 +10,8 @@ import java.time.LocalDate;
 @ControllerAdvice
 public class GlobalBindingInitializer {
 
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(LocalDate.class, new CustomLocalDateEditor("yyyy-MM-dd"));
-    }
+  @InitBinder
+  public void initBinder(WebDataBinder binder) {
+    binder.registerCustomEditor(LocalDate.class, new CustomLocalDateEditor("yyyy-MM-dd"));
+  }
 }

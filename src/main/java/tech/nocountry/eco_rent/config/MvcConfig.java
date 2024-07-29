@@ -10,12 +10,11 @@ import org.slf4j.LoggerFactory;
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
 
-    private static final Logger logger = LoggerFactory.getLogger(MvcConfig.class);
+  private static final Logger logger = LoggerFactory.getLogger(MvcConfig.class);
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        logger.info("Configuring resource handlers for static content");
-        registry.addResourceHandler("/static/**")
-                .addResourceLocations("classpath:/static/");
-    }
+  @Override
+  public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    logger.info("Configuring resource handlers for static content");
+    registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+  }
 }

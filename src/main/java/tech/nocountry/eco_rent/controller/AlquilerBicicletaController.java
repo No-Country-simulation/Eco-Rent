@@ -11,40 +11,40 @@ import tech.nocountry.eco_rent.model.TipoBicicleta;
 import org.springframework.ui.Model;
 import tech.nocountry.eco_rent.repository.AlquilerRepository;
 
-
 @Controller
 public class AlquilerBicicletaController {
-    
-    private final AlquilerRepository alquilerRepository;
 
-    @Autowired
-    public AlquilerBicicletaController(AlquilerRepository alquilerRepository) {
-        this.alquilerRepository = alquilerRepository;
+  private final AlquilerRepository alquilerRepository;
+
+  @Autowired
+  public AlquilerBicicletaController(AlquilerRepository alquilerRepository) {
+    this.alquilerRepository = alquilerRepository;
+  }
+
+  @GetMapping("/alquiler-bicicleta")
+  public String alquilerBicicleta(Model model) {
+    model.addAttribute("tiposBicicleta", TipoBicicleta.values());
+    model.addAttribute("alquiler", new Alquiler());
+    return "alquiler-bicicleta";
+  }
+
+  @PostMapping("/alquiler-bicicleta")
+  public String alquilerBicicletaForm(
+      @Valid Alquiler alquiler, BindingResult bindingResult, Model model) {
+
+    if (bindingResult.hasErrors()) {
+      model.addAttribute("tiposBicicleta", TipoBicicleta.values());
+      model.addAttribute("alquiler", alquiler);
+      return "alquiler-bicicleta";
     }
 
-    @GetMapping("/alquiler-bicicleta")
-    public String alquilerBicicleta(Model model){
-        model.addAttribute("tiposBicicleta", TipoBicicleta.values());
-        model.addAttribute("alquiler", new Alquiler());
-        return "alquiler-bicicleta";
-    }
+    alquilerRepository.save(alquiler);
 
-    @PostMapping("/alquiler-bicicleta")
-    public String alquilerBicicletaForm(@Valid Alquiler alquiler, BindingResult bindingResult, Model model){
+    return "redirect:/exito";
+  }
 
-        if(bindingResult.hasErrors()){
-            model.addAttribute("tiposBicicleta", TipoBicicleta.values());
-            model.addAttribute("alquiler", alquiler);
-            return "alquiler-bicicleta";
-        }
-
-        alquilerRepository.save(alquiler);
-
-        return "redirect:/exito";
-    }
-
-    @GetMapping("/exito")
-    public String exito() {
-        return "exito";
-    }
+  @GetMapping("/exito")
+  public String exito() {
+    return "exito";
+  }
 }
