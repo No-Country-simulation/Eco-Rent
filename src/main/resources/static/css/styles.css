@@ -9,7 +9,6 @@
     --color-titulo-info: #00980d;
 }
 
-
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -60,12 +59,17 @@ header nav ul li a:hover, header nav ul li a:focus, .nav-link:hover, .nav-link:f
     color: white;
     text-align: center;
     padding: 5rem 0;
+    position: relative; /* Para alinear elementos internos */
 }
 
 .banner h1 {
     margin: 0;
     font-size: 2.5rem;
-    color: var(--color-texto-banner);
+    transition: color 0.3s ease-in-out;
+}
+
+.banner h1:hover {
+    color: var(--color-verde-banner);
 }
 
 .banner p {
@@ -145,4 +149,48 @@ footer {
 
 .nav-link:hover, .nav-link:focus {
     color: var(--color-gris-claro) !important;
+}
+
+/* Estilo para el efecto ROAD en el texto */
+.road-effect {
+    position: relative;
+    display: inline-block;
+    font-size: 2.5rem;
+    color: var(--color-texto-banner);
+    overflow: hidden;
+    transition: color 0.3s ease-in-out;
+}
+
+.road-effect:hover {
+    color: var(--color-verde-banner);
+}
+
+.road-effect::before,
+.road-effect::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-texto-banner);
+    left: 0;
+    animation: road-line 2s linear infinite;
+}
+
+.road-effect::before {
+    top: -5px;
+    animation-delay: 0.5s;
+}
+
+.road-effect::after {
+    bottom: -5px;
+    animation-delay: 1.5s;
+}
+
+@keyframes road-line {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
 }
