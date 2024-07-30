@@ -67,12 +67,12 @@
                                     <input type="date" class="form-control" id="fecha-entrega" th:field="*{fechaEntrega}" required>
                                     <div class="invalid-feedback" th:if="${#fields.hasErrors('fechaEntrega')}" th:errors="*{fechaEntrega}"></div>
                                 </div>
-                                
+
                                 // Tipos de bicicletas
                                 <div class="col-12">
                                     <label for="bicicleta" class="form-label">Bicicleta</label>
                                     <select class="form-select" id="bicicleta" th:field="*{tipoBicicleta}" required>
-                                        
+                                        <option value="">Elija tipo de bicicleta</option>
                                         <option value="MOUNTAIN">Mountain Bike</option>
                                         <option value="ROAD">Bicicleta de Carretera</option>
                                         <option value="CITY">Bicicleta Urbana</option>
@@ -83,11 +83,12 @@
                                         <option value="CRUISER">Bicicleta Cruiser</option>
                                         <option value="TOURING">Bicicleta de Touring</option>
                                         <option value="TANDEM">Bicicleta Tándem</option>
-
                                     </select>
                                     <div class="invalid-feedback" th:if="${#fields.hasErrors('tipoBicicleta')}" th:errors="*{tipoBicicleta}"></div>
                                 </div>
+
                             </div>
+                            
                             <div class="d-grid gap-2 mt-4">
                                 <button type="submit" class="btn btn-primary btn-lg">
                                     <i class="fas fa-bicycle me-2"></i>Alquilar Bicicleta
