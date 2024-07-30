@@ -6,10 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import tech.nocountry.eco_rent.model.Alquiler;
 import tech.nocountry.eco_rent.model.TipoBicicleta;
 import org.springframework.ui.Model;
+import tech.nocountry.eco_rent.model.Usuario;
 import tech.nocountry.eco_rent.repository.AlquilerRepository;
+import tech.nocountry.eco_rent.repository.UsuarioRepository;
 import tech.nocountry.eco_rent.service.EmailService;
 import tech.nocountry.eco_rent.service.GeneradorTokenService;
 
@@ -17,52 +20,75 @@ import tech.nocountry.eco_rent.service.GeneradorTokenService;
 public class AlquilerBicicletaController {
 
   private final AlquilerRepository alquilerRepository;
+  private final UsuarioRepository usuarioRepository;
   private final GeneradorTokenService tokenService;
   private final EmailService emailService;
 
   @Autowired
   public AlquilerBicicletaController(
-      AlquilerRepository alquilerRepository,
-      GeneradorTokenService tokenService,
-      EmailService emailService) {
+          AlquilerRepository alquilerRepository,
+          UsuarioRepository usuarioRepository,
+          GeneradorTokenService tokenService,
+          EmailService emailService) {
     this.alquilerRepository = alquilerRepository;
+    this.usuarioRepository = usuarioRepository;
     this.tokenService = tokenService;
     this.emailService = emailService;
   }
 
   @GetMapping("/alquiler-bicicleta")
   public String alquilerBicicleta(Model model) {
-    try {
-      model.addAttribute("tiposBicicleta", TipoBicicleta.values());
+    model.addAttribute("email", new String());
+    return "alquiler-bicicleta";
+  }
+
+  @PostMapping("/check-email")
+  public String checkEmail(@RequestParam("email") String email, Model model) {
+    Usuario usuario = usuarioRepository.findByEmail(email);
+    if (usuario != null) {
       model.addAttribute("alquiler", new Alquiler());
-      return "alquiler-bicicleta";
-    } catch (Exception e) {
-      // Log the error
-      System.err.println("Error in alquilerBicicleta method: " + e.getMessage());
-      return "error";
+      model.addAttribute("tiposBicicleta", TipoBicicleta.values());
+      model.addAttribute("usuario", usuario);
+      return "alquiler-bicicleta-form";
+    } else {
+      model.addAttribute("usuario", new Usuario());
+      return "registro-usuario";
     }
+  }
+
+  @PostMapping("/registro-usuario")
+  public String registroUsuario(@Valid Usuario usuario, BindingResult bindingResult, Model model) {
+    if (bindingResult.hasErrors()) {
+      return "registro-usuario";
+    }
+    usuarioRepository.save(usuario);
+    model.addAttribute("alquiler", new Alquiler());
+    model.addAttribute("tiposBicicleta", TipoBicicleta.values());
+    model.addAttribute("usuario", usuario);
+    return "alquiler-bicicleta-form";
   }
 
   @PostMapping("/alquiler-bicicleta")
   public String alquilerBicicletaForm(
-      @Valid Alquiler alquiler, BindingResult bindingResult, Model model) {
+          @Valid Alquiler alquiler, BindingResult bindingResult, Model model) {
 
     if (bindingResult.hasErrors()) {
       model.addAttribute("tiposBicicleta", TipoBicicleta.values());
       model.addAttribute("alquiler", alquiler);
-      return "alquiler-bicicleta";
+      return "alquiler-bicicleta-form";
     }
+
+    // Generate token
+    String token = tokenService.generateToken();
+    alquiler.setToken(token);
 
     // Save the rental
     alquilerRepository.save(alquiler);
 
-    // Generate token
-    String token = tokenService.generateToken();
-
     // Send email
     String subject = "Confirmación de Alquiler de Bicicleta";
     String text = "Gracias por alquilar una bicicleta. Su token de confirmación es: " + token;
-    emailService.sendEmail(alquiler.getEmail(), subject, text);
+    emailService.sendEmail(alquiler.getUsuario().getEmail(), subject, text);
 
     model.addAttribute("token", token);
     return "redirect:/exito";
