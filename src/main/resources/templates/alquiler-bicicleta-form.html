@@ -11,7 +11,7 @@
 <div class="container mt-5">
     <h1>Alquiler de bicicletas</h1>
     <form action="/alquiler-bicicleta" method="post" th:object="${alquiler}" class="needs-validation" novalidate>
-        <input type="hidden" th:field="*{usuario.id}">
+        <input type="hidden" th:field="*{usuario.id}" th:value="${usuario.id}">
         <div class="form-group">
             <label for="fecha-retiro">Fecha Retiro:</label>
             <input type="date" class="form-control" id="fecha-retiro" th:field="*{fechaRetiro}" required>
