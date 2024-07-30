@@ -78,6 +78,13 @@ public class AlquilerBicicletaController {
       return "alquiler-bicicleta-form";
     }
 
+    // Fetch the user from the database
+    Usuario usuario = usuarioRepository.findById(alquiler.getUsuario().getId())
+            .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
+
+    // Set the user in the rental
+    alquiler.setUsuario(usuario);
+
     // Generate token
     String token = tokenService.generateToken();
     alquiler.setToken(token);
