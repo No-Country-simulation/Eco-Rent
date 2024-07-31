@@ -68,6 +68,10 @@
         const swiper = new Swiper('.swiper', {
             direction: 'horizontal',
             loop: true,
+            autoplay: {
+                delay: 2500, // Cambia el valor del delay para ajustar la velocidad del autoplay
+                disableOnInteraction: false,
+            },
             pagination: {
                 el: '.swiper-pagination',
             },
