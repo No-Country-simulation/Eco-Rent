@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eco-Rent</title>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/img/logo1.jpg">
+    <!--  <link rel="icon" type="image/png" sizes="16x16" href="../static/img/logo1.jpg"> -->
+
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="main-content">
+    <!-- Slider main container -->
+    <div class="swiper">
+        <!-- Additional required wrapper -->
+
+        <div class="swiper-wrapper">
+            <!-- Slides -->            
+            <div class="swiper-slide"><img src="../static/img/Banners/Banner1.png" alt="Slide 1"></div>
+            <div class="swiper-slide"><img src="../static/img/Banners/Banner2.png" alt="Slide 2"></div>
+            <div class="swiper-slide"><img src="../static/img/Banners/Banner3.png" alt="Slide 3"></div>
+        </div>
+
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <!-- If we need scrollbar -->
+        <div class="swiper-scrollbar"></div>
+    </div>
+
+    <section class="banner">
+        <h1 class="road-effect">Eco Rent, Alquila tu Bicicleta</h1>
+        <p>Explora la ciudad de manera sostenible y saludable</p>
+        <button th:href="@{/alquiler-bicicleta}">Reservar Ahora</button>
+    </section>
+      
+    <div th:replace="~{fragments/catalogo :: catalogo}"></div>
+
+    <section class="info">
+        <div class="info-box">
+            <h2>Eco-Friendly</h2>
+            <p>Contribuye al medio ambiente alquilando una bicicleta y reduce tu huella de carbono.</p>
+        </div>
+        <div class="info-box">
+            <h2>Ahorro</h2>
+            <p>Alquila una bicicleta a precios asequibles y evita los costos de mantenimiento de un vehículo.</p>
+        </div>
+        <div class="info-box">
+            <h2>Conveniencia</h2>
+            <p>Encuentra y alquila bicicletas fácilmente desde nuestra aplicación móvil.</p>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper('.swiper', {
+            direction: 'horizontal',
+            loop: true,
+            autoplay: {
+                delay: 2500, //velocidad del autoplay
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            scrollbar: {
+                el: '.swiper-scrollbar',
+            },
+        });
+    </script>
+</div>
+
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

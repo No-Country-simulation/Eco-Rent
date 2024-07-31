@@ -1,0 +1,191 @@
+
+body {
+    background: url("../img/back.jpg");
+    color: #aaa;
+    font-size: 14px;
+    font-family: 'Arial', sans-serif;
+    height: 100%;
+  }
+  
+  p {
+    margin: 0 0 30px;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+    color: #31353d;
+    margin: 0;
+  }
+  
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+  
+  abbr {
+    cursor: help;
+  }
+  
+  img {
+    max-width: 100%;
+  }
+  
+  figure {
+    margin: 0;
+    line-height: 0;
+  }
+  
+  main[role="main"] {
+    max-width: 500px;
+    margin: 20px auto;
+    position: relative;
+  }
+  
+  .product {
+    background: #fff;
+    max-width: 300px;
+    position: relative;
+    z-index: 15;
+    margin: 0 auto;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+  }
+  
+  .product-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px 2px 0 0;
+    height: 200px;
+  
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all .3s ease;
+    }
+  }
+  
+  .product-description {
+    position: relative;
+    z-index: 15;
+    background: #fff;
+    overflow: hidden;
+  
+    .info {
+      padding: 15px;
+      color: #aaa;
+      font-size: 0.85em;
+      width: 75%;
+      float: left;
+  
+      h1 {
+        font-size: 20px;
+        margin: 0 0 5px;
+      }
+  
+      p {
+        margin-bottom: 15px;
+        line-height: 1.3em;
+      }
+    }
+  
+    .price {
+      width: 25%;
+      float: left;
+      color: #9bb6aa;
+      font-size: 3.5em;
+      position: relative;
+      margin-top: 25px;
+    }
+  
+    .price::before {
+      content: '$';
+      position: absolute;
+      top: 0;
+      left: -10px;
+      font-size: 0.35em;
+    }
+  }
+  
+  .product-sidebar {
+    height: 100%;
+    background: #31353d;
+    width: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    transition: right .3s ease;
+    border-radius: 0 2px 2px 0;
+  
+    button {
+      border: 0;
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+      color: #fff;
+      padding: 0.9em;
+      font-size: 0.8em;
+      width: 50px;
+      height: 50px;
+      overflow: hidden;
+      transition: all .4s ease;
+      background: transparent no-repeat 15px;
+    }
+  
+    .buy {
+      background-image: url("https://raw.githubusercontent.com/brunodsgn/productpreview/master/assets/img/icons/buy.png");
+    }
+  
+    span {
+      opacity: 0;
+      white-space: nowrap;
+      margin-left: 30px;        
+    }
+  
+    button:hover {
+      width: 130px;
+      background-color: #9bb6aa;
+      position: relative;
+      background-position: 15px center;
+      border-color: #9bb6aa;
+    }
+  
+    button:hover span {
+      opacity: 1;
+    }
+  }
+  
+  .product:hover .product-sidebar {
+    right: -50px;
+  }
+  
+  @media screen and (max-width: 480px) {
+    #content {
+      margin-top: 60px;
+    }
+  
+    .product {
+      .product-sidebar {
+        width: 100%;
+        height: 50px;
+        bottom: 0px;
+        left: 0;
+        top: inherit;
+        border-radius: 0 0px 2px 2px;
+        transition: bottom .3s ease;
+      }
+  
+      &:hover .product-sidebar {
+        bottom: -50px;
+      }
+    }
+  }
+  
+  @media screen and (max-width: 360px) {
+    .product .product-sidebar {
+      bottom: -50px;
+    }
+  }
+  

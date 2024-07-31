@@ -1,5 +1,5 @@
 :root {
-    --color-verde-oscuro: #05662C;
+    --color-verde-oscuro: #05662c1a;
     --color-blanco: #FFFFFF;
     --color-gris-claro: #CCCCCC;
     --color-verde-banner: #389800;
@@ -59,12 +59,17 @@ header nav ul li a:hover, header nav ul li a:focus, .nav-link:hover, .nav-link:f
     color: white;
     text-align: center;
     padding: 5rem 0;
+    position: relative; /* Para alinear elementos internos */
 }
 
 .banner h1 {
     margin: 0;
     font-size: 2.5rem;
-    color: var(--color-texto-banner);
+    transition: color 0.3s ease-in-out;
+}
+
+.banner h1:hover {
+    color: var(--color-verde-banner);
 }
 
 .banner p {
@@ -94,7 +99,7 @@ header nav ul li a:hover, header nav ul li a:focus, .nav-link:hover, .nav-link:f
     border-radius: 50px;
     cursor: pointer;
     border: 0;
-    background-color: rgb(244, 255, 225);
+    background-color: rgb(144, 190, 65);
     box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
     letter-spacing: 1.5px;
     text-transform: uppercase;
@@ -145,3 +150,4 @@ footer {
 .nav-link:hover, .nav-link:focus {
     color: var(--color-gris-claro) !important;
 }
+
