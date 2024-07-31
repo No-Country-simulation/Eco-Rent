@@ -19,13 +19,16 @@ public class Alquiler {
   private Long id;
 
   @NotNull(message = "La fecha de retiro no puede estar vacía")
+  @Column(name = "fecha_retiro")
   private LocalDate fechaRetiro;
 
   @NotNull(message = "La fecha de entrega no puede estar vacía")
+  @Column(name = "fecha_entrega")
   private LocalDate fechaEntrega;
 
   @NotNull(message = "El tipo de bicicleta no puede estar vacío")
   @Enumerated(EnumType.STRING)
+  @Column(name = "tipo_bicicleta")
   private TipoBicicleta tipoBicicleta;
 
   @Column(unique = true)
@@ -34,4 +37,7 @@ public class Alquiler {
   @ManyToOne
   @JoinColumn(name = "usuario_id")
   private Usuario usuario;
+
+  @Column(name = "esta_activa", columnDefinition = "BOOLEAN DEFAULT FALSE")
+  private Boolean estaActiva;
 }
