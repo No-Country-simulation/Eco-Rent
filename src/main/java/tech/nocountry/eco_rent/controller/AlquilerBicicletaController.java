@@ -86,6 +86,11 @@ public class AlquilerBicicletaController {
     // Log the user ID from the rental object
     System.out.println("User ID from rental: " + alquiler.getUsuario().getId());
 
+    // Check if the user ID is set correctly
+    if (alquiler.getUsuario().getId() == 0) {
+      throw new IllegalArgumentException("Usuario no encontrado");
+    }
+
     // Fetch the user from the database
     Usuario usuario =
             usuarioRepository
