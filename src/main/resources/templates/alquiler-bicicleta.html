@@ -20,6 +20,7 @@
                 <div class="card shadow">
                     <div class="card-body">
                         <h1 class="card-title text-center mb-4">FORMULARIO DE ALQUILER</h1>
+                        
                         <form action="/alquiler-bicicleta" method="post" th:object="${alquiler}" class="needs-validation" novalidate>
                             <div class="row g-3">
                                 <div class="col-md-6">
@@ -68,7 +69,7 @@
                                     <div class="invalid-feedback" th:if="${#fields.hasErrors('fechaEntrega')}" th:errors="*{fechaEntrega}"></div>
                                 </div>
 
-                                // Tipos de bicicletas
+                               
                                 <div class="col-12">
                                     <label for="bicicleta" class="form-label">Bicicleta</label>
                                     <select class="form-select" id="bicicleta" th:field="*{tipoBicicleta}" required>

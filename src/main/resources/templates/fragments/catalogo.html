@@ -1,40 +1,78 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo</title>
-    <link rel="stylesheet" href="../static/css/catalogo.css" th:href="@{/css/catalogo.css}">
+    <link rel="stylesheet" href="../static/css/catalogo.css">
 </head>
 <body>
-    <div th:fragment="catalogo">
-        <section class="catalogo-bicicletas">
-            <h2>Nuestras Bicicletas</h2>
-            <div class="bicicletas-grid">
-                <div class="bicicleta-card">
-                    <img src="..\resources\static\img\bicis\urbana.jfif" th:src="@{/img/bicis/urbana.jfif}" alt="Bicicleta de Ciudad">
-                    <h3>Bicicleta de Ciudad</h3>
-                    <p>Perfecta para desplazamientos urbanos cómodos.</p>
-                    <p class="precio">$15000/hora</p>
-                    <button class="btn-alquilar" th:href="@{/alquiler-bicicleta}">Alquilar</button>
-                </div>
-                <div class="bicicleta-card">
-                    <img src="..\resources\static\img\bicis\montaña.jfif" th:src="@{/img/bicis/montaña.jfif}" alt="Bicicleta de Montaña">
-                    <h3>Bicicleta de Montaña</h3>   
-                    <p>Ideal para aventuras off-road y senderos.</p>
-                    <p class="precio">$20000/hora</p>
-                    <button class="btn-alquilar" th:href="@{/alquiler-bicicleta}">Alquilar</button>
-                </div>
-                <div class="bicicleta-card">
-                    <img src="..\resources\static\img\bicis\electrica.jfif" th:src="@{/img/bicis/electrica.jfif}" alt="Bicicleta Eléctrica">
-                    <h3>Bicicleta Eléctrica</h3>
-                    <p>Para recorridos largos con asistencia eléctrica.</p>
-                    <p class="precio">$25000/hora</p>
-                    <button class="btn-alquilar" th:href="@{/alquiler-bicicleta}">Alquilar</button>
-                </div>
-                
+<main role="main">
+    <div class="product">
+        <figure>
+            <img src="..\resources\static\img\bicis\urbana.jfif" alt="Bicicleta de Ciudad" class="product-image">
+        </figure>
+
+        <div class="product-description">
+            <div class="info">
+                <h1>Bicicleta de Ciudad</h1>
+                <p>Perfecta para desplazamientos urbanos cómodos.</p>
             </div>
-        </section>
+            <div class="price">
+                15000
+            </div>
+        </div>
+
+        <div class="product-sidebar">
+            <button class="buy">
+                <span>ALQUILAR</span>
+            </button>
+        </div>
     </div>
+
+    <div class="product">
+        <figure>
+            <img src="..\resources\static\img\bicis\montaña.jfif" alt="Bicicleta de Montaña" class="product-image">
+        </figure>
+
+        <div class="product-description">
+            <div class="info">
+                <h1>Bicicleta de Montaña</h1>
+                <p>Ideal para aventuras off-road y senderos.</p>
+            </div>
+            <div class="price">
+                20000
+            </div>
+        </div>
+
+        <div class="product-sidebar">
+            <button class="buy">
+                <span>ALQUILAR</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="product">
+        <figure>
+            <img src="..\resources\static\img\bicis\electrica.jfif" alt="Bicicleta Eléctrica" class="product-image">
+        </figure>
+
+        <div class="product-description">
+            <div class="info">
+                <h1>Bicicleta Eléctrica</h1>
+                <p>Para recorridos largos con asistencia eléctrica.</p>
+            </div>
+            <div class="price">
+                25000
+            </div>
+        </div>
+
+        <div class="product-sidebar">
+            <button class="buy">
+                <span>ALQUILAR</span>
+            </button>
+        </div>
+    </div>
+</main>
 </body>
 </html>
