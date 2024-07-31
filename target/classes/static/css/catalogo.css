@@ -1,0 +1,76 @@
+.catalogo-bicicletas {
+    padding: 50px 20px;
+    background-color: #f5f5f5;
+}
+
+.catalogo-bicicletas h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.bicicletas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    justify-items: center;
+}
+
+.bicicleta-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    max-width: 300px;
+}
+
+.bicicleta-card:hover {
+    transform: translateY(-5px);
+}
+
+.bicicleta-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.bicicleta-card h3 {
+    color: #333;
+    padding: 15px 15px 5px;
+    margin: 0;
+}
+
+.bicicleta-card p {
+    color: #666;
+    padding: 0 15px;
+    font-size: 0.9em;
+}
+
+.bicicleta-card .precio {
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.btn-alquilar {
+    display: block;
+    width: 90%;
+    margin: 15px auto;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-alquilar:hover {
+    background-color: #45a049;
+}
+
+@media (max-width: 768px) {
+    .bicicletas-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}

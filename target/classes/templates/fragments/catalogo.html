@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo</title>
+    <link rel="stylesheet" href="../static/css/catalogo.css" th:href="@{/css/catalogo.css}">
+</head>
+<body>
+    <div th:fragment="catalogo">
+        <section class="catalogo-bicicletas">
+            <h2>Nuestras Bicicletas</h2>
+            <div class="bicicletas-grid">
+                <div class="bicicleta-card">
+                    <img src="..\resources\static\img\bicis\urbana.jfif" th:src="@{/img/bicis/urbana.jfif}" alt="Bicicleta de Ciudad">
+                    <h3>Bicicleta de Ciudad</h3>
+                    <p>Perfecta para desplazamientos urbanos cómodos.</p>
+                    <p class="precio">$15000/hora</p>
+                    <button class="btn-alquilar">Alquilar</button>
+                </div>
+                <div class="bicicleta-card">
+                    <img src="..\resources\static\img\bicis\montaña.jfif" th:src="@{/img/bicis/montaña.jfif}" alt="Bicicleta de Montaña">
+                    <h3>Bicicleta de Montaña</h3>
+                    <p>Ideal para aventuras off-road y senderos.</p>
+                    <p class="precio">$20000/hora</p>
+                    <button class="btn-alquilar">Alquilar</button>
+                </div>
+                <div class="bicicleta-card">
+                    <img src="..\resources\static\img\bicis\electrica.jfif" th:src="@{/img/bicis/electrica.jfif}" alt="Bicicleta Eléctrica">
+                    <h3>Bicicleta Eléctrica</h3>
+                    <p>Para recorridos largos con asistencia eléctrica.</p>
+                    <p class="precio">$25000/hora</p>
+                    <button class="btn-alquilar">Alquilar</button>
+                </div>
+                
+            </div>
+        </section>
+    </div>
+</body>
+</html>

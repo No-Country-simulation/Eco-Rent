@@ -20,16 +20,14 @@
     <!-- Slider main container -->
     <div class="swiper">
         <!-- Additional required wrapper -->
+
         <div class="swiper-wrapper">
-            <!-- Slides -->
-             <!-- <div class="swiper-slide"><img
-                    src="https://cdn-site.localiza.com/wp-content/uploads/2024/07/BANNER-WEB-MENSUALES-COLOMBIA_HOME-1920X616.png"
-                    alt="Slide 1"></div> -->
-            
-            <div class="swiper-slide"><img src="../static/img/Banner1.png" alt="Slide 1"></div>
-            <div class="swiper-slide"><img src="../static/img/Banner2.png" alt="Slide 2"></div>
-            <div class="swiper-slide"><img src="../static/img/Banner3.png" alt="Slide 3"></div>
+            <!-- Slides -->            
+            <div class="swiper-slide"><img src="../static/img/Banners/Banner1.png" alt="Slide 1"></div>
+            <div class="swiper-slide"><img src="../static/img/Banners/Banner2.png" alt="Slide 2"></div>
+            <div class="swiper-slide"><img src="../static/img/Banners/Banner3.png" alt="Slide 3"></div>
         </div>
+
         <!-- If we need pagination -->
         <div class="swiper-pagination"></div>
 
@@ -85,6 +83,8 @@
         });
     </script>
 </div>
+
+<div th:replace="~{fragments/catalogo :: catalogo}"></div>
 <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>
