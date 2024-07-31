@@ -45,6 +45,7 @@
         <button th:href="@{/alquiler-bicicleta}">Reservar Ahora</button>
     </section>
       
+    <div th:replace="~{fragments/catalogo :: catalogo}"></div>
 
     <section class="info">
         <div class="info-box">
@@ -84,7 +85,7 @@
     </script>
 </div>
 
-<div th:replace="~{fragments/catalogo :: catalogo}"></div>
+
 <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>
