@@ -75,7 +75,7 @@ public class AlquilerBicicletaController {
 
   @PostMapping("/alquiler-bicicleta")
   public String alquilerBicicletaForm(
-          @Valid Alquiler alquiler, BindingResult bindingResult, Model model) {
+          @Valid Alquiler alquiler, BindingResult bindingResult, Model model, @RequestParam("usuarioId") Long usuarioId) {
 
     if (bindingResult.hasErrors()) {
       model.addAttribute("tiposBicicleta", TipoBicicleta.values());
@@ -83,18 +83,13 @@ public class AlquilerBicicletaController {
       return "alquiler-bicicleta-form";
     }
 
-    // Log the user ID from the rental object
-    System.out.println("User ID from rental: " + alquiler.getUsuario().getId());
-
-    // Check if the user ID is set correctly
-    if (alquiler.getUsuario().getId() == 0) {
-      throw new IllegalArgumentException("Usuario no encontrado");
-    }
+    // Log the user ID from the request parameter
+    System.out.println("User ID from request: " + usuarioId);
 
     // Fetch the user from the database
     Usuario usuario =
             usuarioRepository
-                    .findById(alquiler.getUsuario().getId())
+                    .findById(usuarioId)
                     .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
 
     // Log the user found
