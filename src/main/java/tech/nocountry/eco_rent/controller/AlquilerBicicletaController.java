@@ -44,13 +44,18 @@ public class AlquilerBicicletaController {
 
   @PostMapping("/check-email")
   public String checkEmail(@RequestParam("email") String email, Model model) {
+    // Log the email received
+    System.out.println("Received email: " + email);
+
     Usuario usuario = usuarioRepository.findByEmail(email);
     if (usuario != null) {
+      System.out.println("User found: " + usuario.getId());
       model.addAttribute("alquiler", new Alquiler());
       model.addAttribute("tiposBicicleta", TipoBicicleta.values());
       model.addAttribute("usuario", usuario);
       return "alquiler-bicicleta-form";
     } else {
+      System.out.println("User not found, redirecting to registration");
       model.addAttribute("usuario", new Usuario());
       return "registro-usuario";
     }
