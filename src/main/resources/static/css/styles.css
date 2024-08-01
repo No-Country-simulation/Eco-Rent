@@ -114,7 +114,7 @@ header nav ul li a:hover, header nav ul li a:focus, .nav-link:hover, .nav-link:f
     box-shadow: var(--color-verde-banner-hover) 0px 7px 29px 0px;
 }
 
-.banner button:active {
+.banner a.btn-primary:active {
     letter-spacing: 3px;
     background-color: var(--color-verde-banner-hover);
     color: var(--color-blanco);
