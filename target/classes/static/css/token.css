@@ -1,4 +1,4 @@
-/* Estilos generales */
+
 body {
     font-family: 'Arial', sans-serif;
     background-color: #c5a6a6;
@@ -11,13 +11,11 @@ body {
     padding: 20px;
 }
 
-/* Estilos del encabezado */
 h1 {
     color: #2c3e50;
     margin-bottom: 30px;
 }
 
-/* Estilos del formulario */
 .form-group {
     margin-bottom: 20px;
 }
