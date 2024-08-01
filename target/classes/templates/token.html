@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token</title>
+    <link rel="stylesheet" href="../static/css/token.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <header th:replace="~{fragments/navbar :: navbar}"></header>
+       <br><br><br><br>
+    <main class="container mt-5">
+        <h3 class="text-center mb-4">Verificación de Token</h3>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form id="tokenForm" th:action="@{/verificar-token}" method="post">
+                    <div class="form-group">
+                        <label for="token">Ingrese su token de verificación:</label>
+                        <input type="text" class="form-control" id="token" name="token" required>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn-verify">Verificar</button>
+                    </div>
+                </form>
+
+                <div id="resultadoVerificacion" class="mt-4" style="display: none;">
+                    <div class="alert alert-success" id="montoAPagar" style="display: none;">
+                        <h4 class="alert-heading">Token Válido</h4>
+                        <p>El monto a abonar es: $<span id="monto"></span></p>
+                    </div>
+                    <div class="alert alert-danger" id="mensajeError" style="display: none;">
+                        <h4 class="alert-heading">Error</h4>
+                        <p id="textoError"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#tokenForm').on('submit', function(e) {
+                e.preventDefault();
+                var token = $('#token').val();
+
+                $.ajax({
+                    url: '/verificar-token',
+                    type: 'POST',
+                    data: { token: token },
+                    success: function(response) {
+                        $('#resultadoVerificacion').show();
+                        if (response.valido) {
+                            $('#montoAPagar').show();
+                            $('#mensajeError').hide();
+                            $('#monto').text(response.monto);
+                        } else {
+                            $('#montoAPagar').hide();
+                            $('#mensajeError').show();
+                            $('#textoError').text(response.mensaje);
+                        }
+                    },
+                    error: function() {
+                        $('#resultadoVerificacion').show();
+                        $('#montoAPagar').hide();
+                        $('#mensajeError').show();
+                        $('#textoError').text('Ha ocurrido un error al procesar la solicitud.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
