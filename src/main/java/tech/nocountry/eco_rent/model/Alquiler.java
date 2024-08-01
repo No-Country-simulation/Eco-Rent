@@ -38,6 +38,8 @@ public class Alquiler {
   @JoinColumn(name = "usuario_id")
   private Usuario usuario;
 
-  @Column(name = "esta_activa", columnDefinition = "BOOLEAN DEFAULT FALSE")
-  private Boolean estaActiva;
+  @NotNull(message = "El estado no puede estar vacío")
+  @Enumerated(EnumType.STRING)
+  @Column(name = "estado")
+  private EstadoAlquiler estado;
 }

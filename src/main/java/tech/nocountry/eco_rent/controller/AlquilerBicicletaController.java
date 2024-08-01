@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import tech.nocountry.eco_rent.model.Alquiler;
+import tech.nocountry.eco_rent.model.EstadoAlquiler;
 import tech.nocountry.eco_rent.model.TipoBicicleta;
 import org.springframework.ui.Model;
 import tech.nocountry.eco_rent.model.Usuario;
@@ -52,7 +53,7 @@ public class AlquilerBicicletaController {
       System.out.println("User found: " + usuario.getId());
       model.addAttribute("alquiler", new Alquiler());
       model.addAttribute("tiposBicicleta", TipoBicicleta.values());
-      model.addAttribute("usuario", usuario);
+      model.addAttribute("usuario", usuario); // Asegurarse de que el usuario se añade al modelo
       return "alquiler-bicicleta-form";
     } else {
       System.out.println("User not found, redirecting to registration");
@@ -101,6 +102,9 @@ public class AlquilerBicicletaController {
     // Generate token
     String token = tokenService.generateToken();
     alquiler.setToken(token);
+
+    // Set the rental state to PARA_RETIRO
+    alquiler.setEstado(EstadoAlquiler.PARA_RETIRO);
 
     // Save the rental
     alquilerRepository.save(alquiler);
