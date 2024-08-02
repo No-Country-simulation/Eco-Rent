@@ -114,7 +114,27 @@ header nav ul li a:hover, header nav ul li a:focus, .nav-link:hover, .nav-link:f
     box-shadow: var(--color-verde-banner-hover) 0px 7px 29px 0px;
 }
 
-.banner a.btn-primary:active {
+.banner a.btn.btn-success {
+    padding: 17px 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    border: 0;
+    background-color: rgb(144, 190, 65);
+    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 15px;
+    transition: all 0.5s ease;
+}
+
+.banner a.btn.btn-success:hover {
+    letter-spacing: 3px;
+    background-color: var(--color-verde-banner-hover);
+    color: var(--color-verde-banner);
+    box-shadow: var(--color-verde-banner-hover) 0px 7px 29px 0px;
+}
+
+.banner a.btn.btn-success:active {
     letter-spacing: 3px;
     background-color: var(--color-verde-banner-hover);
     color: var(--color-blanco);
@@ -122,6 +142,7 @@ header nav ul li a:hover, header nav ul li a:focus, .nav-link:hover, .nav-link:f
     transform: translateY(10px);
     transition: 100ms;
 }
+
 
 html, body {
     height: 100%;
