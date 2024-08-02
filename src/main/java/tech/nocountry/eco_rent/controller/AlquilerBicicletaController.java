@@ -27,10 +27,10 @@ public class AlquilerBicicletaController {
 
   @Autowired
   public AlquilerBicicletaController(
-          AlquilerRepository alquilerRepository,
-          UsuarioRepository usuarioRepository,
-          GeneradorTokenService tokenService,
-          EmailService emailService) {
+      AlquilerRepository alquilerRepository,
+      UsuarioRepository usuarioRepository,
+      GeneradorTokenService tokenService,
+      EmailService emailService) {
     this.alquilerRepository = alquilerRepository;
     this.usuarioRepository = usuarioRepository;
     this.tokenService = tokenService;
@@ -71,18 +71,23 @@ public class AlquilerBicicletaController {
 
   @PostMapping("/alquiler-bicicleta")
   public String alquilerBicicletaForm(
-          @Valid Alquiler alquiler,
-          BindingResult bindingResult,
-          Model model,
-          @RequestParam("usuarioId") Long usuarioId) {
+      @Valid Alquiler alquiler,
+      BindingResult bindingResult,
+      Model model,
+      @RequestParam("usuarioId") Long usuarioId) {
+
+    System.out.println("Entrando en el método alquilerBicicletaForm");
 
     if (bindingResult.hasErrors()) {
+      System.out.println("Errores en el formulario: " + bindingResult.getAllErrors());
       model.addAttribute("tiposBicicleta", TipoBicicleta.values());
       model.addAttribute("alquiler", alquiler);
       return "alquiler-bicicleta-form";
     }
 
-    Usuario usuario = usuarioRepository.findById(usuarioId)
+    Usuario usuario =
+        usuarioRepository
+            .findById(usuarioId)
             .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
 
     alquiler.setUsuario(usuario);
