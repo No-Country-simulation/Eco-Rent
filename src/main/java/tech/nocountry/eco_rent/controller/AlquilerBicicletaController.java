@@ -87,6 +87,7 @@ public class AlquilerBicicletaController {
     if (bindingResult.hasErrors()) {
       model.addAttribute("tiposBicicleta", TipoBicicleta.values());
       model.addAttribute("alquiler", alquiler);
+      System.out.println("PASA POR ACACACACA");
       return "alquiler-bicicleta-form";
     }
 
