@@ -29,6 +29,7 @@ public class TokenController {
 
     @PostMapping("/verificar-token")
     public String verificarToken(@RequestParam("token") String token, Model model) {
+        System.out.println("Token recibido: " + token);
         Alquiler alquiler = alquilerRepository.findByToken(token);
 
         if (alquiler != null && alquiler.getEstado() == EstadoAlquiler.PENDIENTE_PARA_RECOGER) {
@@ -44,6 +45,8 @@ public class TokenController {
 
         return "verificacion-token";
     }
+
+
 
     @PostMapping("/confirmar-pedido")
     public String confirmarPedido(@RequestParam("alquilerId") Long alquilerId, Model model) {
