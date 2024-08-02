@@ -31,6 +31,85 @@
             text-align: center;
         }
 
+        .btn-shine {
+            display: inline-block;
+            transform: translate(-50%, -50%);
+            padding: 12px 1px;
+            color: #fff;
+            background: linear-gradient(to right, #7a7a7a 0, #0cdd1e 10%, #325a05 20%);
+            background-position: 0;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 7s infinite linear;
+            animation-fill-mode: forwards;
+            -webkit-text-size-adjust: none;
+            font-weight: 1000;
+            font-size: 25px;
+            text-decoration: none;
+            white-space: nowrap;
+            font-family: "Poppins", sans-serif;
+            align-items: center;
+        }
+        @-moz-keyframes shine {
+            0% {
+                background-position: 0;
+            }
+            60% {
+                background-position: 700px;
+            }
+            100% {
+                background-position: 700px;
+            }
+        }
+        @-webkit-keyframes shine {
+            0% {
+                background-position: 0;
+            }
+            60% {
+                background-position: 700px;
+            }
+            100% {
+                background-position: 700px;
+            }
+        }
+        @-o-keyframes shine {
+            0% {
+                background-position: 0;
+            }
+            60% {
+                background-position: 700px;
+            }
+            100% {
+                background-position: 700px;
+            }
+        }
+        @keyframes shine {
+            0% {
+                background-position: 0;
+            }
+            60% {
+                background-position: 700px;
+            }
+            100% {
+                background-position: 700px;
+            }
+        }
+        .text-center {
+            text-align: center;
+            position: relative;            
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+        }
+        .mb-3 {
+            margin-bottom: 1rem;
+        }
+
+
         h1 {
             color: #2c3e50;
             margin-bottom: 20px;
@@ -137,7 +216,7 @@
         
         <div class="text-center">
             <img src="../static/img/logo1.png" alt="Logo de Alquiler de Bicicletas" class="img-fluid mb-3" style="max-width: 150px;">
-            <h1>Tu aventura comienza aquí</h1>
+            <a href="#" class="btn-shine">Tu aventura comienza aquí</a>
         </div>
         
         <form action="/alquiler-bicicleta" method="post" class="needs-validation" novalidate>
