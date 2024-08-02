@@ -53,7 +53,7 @@ public class AlquilerBicicletaController {
       System.out.println("User found: " + usuario.getId());
       model.addAttribute("alquiler", new Alquiler());
       model.addAttribute("tiposBicicleta", TipoBicicleta.values());
-      model.addAttribute("usuario", usuario); // Asegurarse de que el usuario se añade al modelo
+      model.addAttribute("usuario", usuario);
       return "alquiler-bicicleta-form";
     } else {
       System.out.println("User not found, redirecting to registration");
