@@ -1,6 +1,12 @@
 .about-us {
-    background-color: #ecf0f1;
     padding: 50px 0;
+}
+
+header, footer {
+    background-color: var(--color-verde-oscuro);
+    color: #4ac97a;
+    padding: 1rem;
+    text-align: center;
 }
 
 .founders {
@@ -43,3 +49,4 @@
     margin: 0 0 15px;
     color: #666;
 }
+

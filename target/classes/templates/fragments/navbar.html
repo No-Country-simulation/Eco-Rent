@@ -41,9 +41,8 @@
 
 <body>
 <div th:fragment="navbar">
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: var(--color-verde-oscuro);">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         
-
         <a class="navbar-brand" th:href="@{/}">
             <img th:src="@{../static/img/logo1.png}" style="height: 60px;" >
         </a>
@@ -52,6 +51,7 @@
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
