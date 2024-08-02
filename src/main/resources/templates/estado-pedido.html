@@ -40,12 +40,21 @@
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 <div class="container mt-5 main-content">
     <h1>Estado del Pedido</h1>
-    <div class="customer-info">
-        <p>Nombre del Cliente: <span>{{ order.customer_name }}</span></p>
-        <p>Email del Cliente: <span>{{ order.customer_email }}</span></p>
+    <div th:if="${valido}">
+        <div class="customer-info">
+            <p>Nombre del Cliente: <span th:text="${nombre}"></span></p>
+            <p>Apellido del Cliente: <span th:text="${apellido}"></span></p>
+            <p>Email del Cliente: <span th:text="${email}"></span></p>
+        </div>
+        <div class="order-status">
+            <p>Su pedido está actualmente: <span th:text="${estado}"></span></p>
+        </div>
     </div>
-    <div class="order-status">
-        <p>Su pedido está actualmente: <span>{{ order.status }}</span></p>
+    <div th:if="${!valido}">
+        <div class="alert alert-danger">
+            <h4 class="alert-heading">Error</h4>
+            <p th:text="${mensaje}"></p>
+        </div>
     </div>
 </div>
 <div th:replace="~{fragments/footer :: footer}"></div>
