@@ -94,8 +94,7 @@ public class AlquilerBicicletaController {
 
     String token = tokenService.generateToken();
     alquiler.setToken(token);
-
-    alquiler.setEstado(EstadoAlquiler.PARA_RETIRO);
+    
 
     alquilerRepository.save(alquiler);
 
