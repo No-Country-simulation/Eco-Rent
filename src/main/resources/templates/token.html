@@ -9,71 +9,97 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <header th:replace="~{fragments/navbar :: navbar}"></header>
-       <br><br><br><br>
-    <main class="container mt-5">
-        <h3 class="text-center mb-4">Verificación de Token</h3>
+<header th:replace="~{fragments/navbar :: navbar}"></header>
+<br><br><br><br>
+<main class="container mt-5">
+    <h3 class="text-center mb-4">Verificación de Token</h3>
 
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <form id="tokenForm" th:action="@{/verificar-token}" method="post">
-                    <div class="form-group">
-                        <label for="token">Ingrese su token de verificación:</label>
-                        <input type="text" class="form-control" id="token" name="token" required>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" class="btn-verify">Verificar</button>
-                    </div>
-                </form>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form id="tokenForm" th:action="@{/verificar-token}" method="post">
+                <div class="form-group">
+                    <label for="token">Ingrese su token de verificación:</label>
+                    <input type="text" class="form-control" id="token" name="token" required>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn-verify">Verificar</button>
+                </div>
+            </form>
 
-                <div id="resultadoVerificacion" class="mt-4" style="display: none;">
-                    <div class="alert alert-success" id="montoAPagar" style="display: none;">
-                        <h4 class="alert-heading">Token Válido</h4>
-                        <p>El monto a abonar es: $<span id="monto"></span></p>
-                    </div>
-                    <div class="alert alert-danger" id="mensajeError" style="display: none;">
-                        <h4 class="alert-heading">Error</h4>
-                        <p id="textoError"></p>
-                    </div>
+            <div id="resultadoVerificacion" class="mt-4" style="display: none;">
+                <div class="alert alert-success" id="datosUsuario" style="display: none;">
+                    <h4 class="alert-heading">Datos del Usuario</h4>
+                    <p>Nombre: <span id="nombre"></span></p>
+                    <p>Apellido: <span id="apellido"></span></p>
+                    <p>Email: <span id="email"></span></p>
+                    <button id="confirmarPedido" class="btn btn-primary">Confirmar Pedido</button>
+                </div>
+                <div class="alert alert-danger" id="mensajeError" style="display: none;">
+                    <h4 class="alert-heading">Error</h4>
+                    <p id="textoError"></p>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
+</main>
 
-    <footer th:replace="~{fragments/footer :: footer}"></footer>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#tokenForm').on('submit', function(e) {
-                e.preventDefault();
-                var token = $('#token').val();
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#tokenForm').on('submit', function(e) {
+            e.preventDefault();
+            var token = $('#token').val();
 
-                $.ajax({
-                    url: '/verificar-token',
-                    type: 'POST',
-                    data: { token: token },
-                    success: function(response) {
-                        $('#resultadoVerificacion').show();
-                        if (response.valido) {
-                            $('#montoAPagar').show();
-                            $('#mensajeError').hide();
-                            $('#monto').text(response.monto);
-                        } else {
-                            $('#montoAPagar').hide();
-                            $('#mensajeError').show();
-                            $('#textoError').text(response.mensaje);
-                        }
-                    },
-                    error: function() {
-                        $('#resultadoVerificacion').show();
-                        $('#montoAPagar').hide();
+            $.ajax({
+                url: '/verificar-token',
+                type: 'POST',
+                data: { token: token },
+                success: function(response) {
+                    $('#resultadoVerificacion').show();
+                    if (response.valido) {
+                        $('#datosUsuario').show();
+                        $('#mensajeError').hide();
+                        $('#nombre').text(response.nombre);
+                        $('#apellido').text(response.apellido);
+                        $('#email').text(response.email);
+                        $('#confirmarPedido').data('alquilerId', response.alquilerId);
+                    } else {
+                        $('#datosUsuario').hide();
                         $('#mensajeError').show();
-                        $('#textoError').text('Ha ocurrido un error al procesar la solicitud.');
+                        $('#textoError').text(response.mensaje);
                     }
-                });
+                },
+                error: function() {
+                    $('#resultadoVerificacion').show();
+                    $('#datosUsuario').hide();
+                    $('#mensajeError').show();
+                    $('#textoError').text('Ha ocurrido un error al procesar la solicitud.');
+                }
             });
         });
-    </script>
+
+        $('#confirmarPedido').on('click', function() {
+            var alquilerId = $(this).data('alquilerId');
+
+            $.ajax({
+                url: '/confirmar-pedido',
+                type: 'POST',
+                data: { alquilerId: alquilerId },
+                success: function(response) {
+                    if (response.valido) {
+                        alert('Pedido confirmado. El monto a abonar es: $' + response.monto);
+                    } else {
+                        alert('Error: ' + response.mensaje);
+                    }
+                },
+                error: function() {
+                    alert('Ha ocurrido un error al procesar la solicitud.');
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>
