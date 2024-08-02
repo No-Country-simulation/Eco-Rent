@@ -162,11 +162,11 @@ footer {
 
 .navbar, .footer, .bg-light {
     background-color: var(--color-verde-oscuro) !important;
-    color: var(--color-blanco) !important;
+    color: #4ac97a !important;
 }
 
 .nav-link, .footer .text-muted, .footer p {
-    color: var(--color-blanco) !important;
+    color: #4ac97a !important;
 }
 
 .nav-link:hover, .nav-link:focus {
@@ -184,8 +184,8 @@ footer {
 #road {
     opacity: .9;
     width: 120vw;
-    height: 20vw;
-    min-height: 200px;
+    height: 10vw; /* Ajustar la altura para que sea más pequeño */
+    min-height: 100px; /* Ajustar la altura mínima para que sea más pequeño */
     background: #888;
     background-image: linear-gradient(
         rgba(0, 0, 0, 0.7) 0%,
@@ -216,7 +216,7 @@ footer {
     height: 5%;
     background: repeating-linear-gradient(
         to right,
-        white,
+        rgb(54, 212, 5),
         white 8vw,
         transparent 8vw,
         transparent 20vw
