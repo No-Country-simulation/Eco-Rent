@@ -62,21 +62,13 @@ header nav ul li a:hover, header nav ul li a:focus, .nav-link:hover, .nav-link:f
     position: relative; /* Para alinear elementos internos */
 }
 
-.banner h1 {
-    margin: 0;
-    font-size: 2.5rem;
-    transition: color 0.3s ease-in-out;
-    position: relative;
-    z-index: 10; /* Asegura que el texto esté encima del fondo */
-}
-
-.banner h1:hover {
-    color: var(--color-verde-banner);
-}
-
 .banner p {
     font-size: 1.2rem;
     color: #1a1818;
+    
+}
+.banner p:hover {
+    color: #00980d;
 }
 
 .info {
