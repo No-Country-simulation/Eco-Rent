@@ -1,106 +1,109 @@
 body {
-    background-image:url("../img/back.jpg");
+    background-image: url("../img/back.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    font-family: 'Arial', sans-serif;
 }
 
 .container {
-    max-width: 1500px;
-    
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card {
     border: none;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    background-color: #f7f7f7e0;
+    background-color: rgba(255, 255, 255, 0.95);
+    max-width: 400px;
+    width: 100%;
+}
+
+.card-body {
+    padding: 2rem;
 }
 
 .card-title {
-    text-align: left; 
-    font-family: sans-serif Black; 
-    font-weight: bold; font-size: 30px; 
-    background: #00ff55; 
-    -webkit-background-clip: text; 
-    -moz-background-clip: text; 
-    background-clip: text; 
-    color: transparent; 
-    text-shadow: 0px 3px 3px rgba(255,255,255,0.4),0px -1px 1px rgba(0,0,0,0.3);
-    }
-
-
-/* Estilos específicos para los labels */
-.form-label {
-    font-weight: 600;
-    display: inline-block;
-    margin-bottom: 0.5rem;
-    color: #495057;
+    color: #28a745;
+    font-weight: bold;
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
 }
 
-.form-control, .form-select {
+.card-body img {
+    max-width: 120px;
+    height: auto;
+    margin-bottom: 1rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #495057;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
     border-radius: 8px;
     border: 1px solid #ced4da;
     padding: 10px 15px;
+    width: 100%;
+    font-size: 1rem;
 }
 
-.form-control:focus, .form-select:focus {
-    border-color: #80bdff;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+.form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+    outline: none;
 }
 
 .btn-primary {
-    background-color: #2bff00;
+    background-color: #28a745;
     border: none;
     border-radius: 8px;
     padding: 12px 20px;
     font-weight: 600;
     text-transform: uppercase;
     transition: all 0.3s ease;
+    color: white;
+    width: 100%;
+    font-size: 1rem;
+    margin-top: 1rem;
 }
 
 .btn-primary:hover {
-    background-color: #1eb400;
+    background-color: #218838;
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 255, 76, 0.3);
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
 }
 
 .invalid-feedback {
     font-size: 0.875rem;
     color: #dc3545;
+    margin-top: 0.25rem;
 }
 
-/* Estilo para los iconos */
 .fas {
     margin-right: 8px;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
-    .container {
-        padding: 0 15px;
+    .card {
+        margin: 1rem;
     }
     
-    .card {
-        border-radius: 0;
+    .card-body {
+        padding: 1.5rem;
     }
-}
-
-/* Animación suave para los campos del formulario */
-.form-control, .form-select {
-    transition: all 0.3s ease;
-}
-
-.form-control:hover, .form-select:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Asegurarse de que los labels sean visibles */
-label {
-    display: inline-block;
-    margin-bottom: 0.5rem;
 }
