@@ -2,6 +2,41 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="icon" type="image/png" sizes="64x64" href="../static/img/logo1.png">
+    <style>
+        :root {
+            --color-verde-oscuro: #4ac97a; 
+        }
+
+        .navbar {
+            background-color: var(--color-verde-oscuro);
+        }
+
+        .navbar-brand img {
+            height: 60px;
+        }
+
+        .navbar-nav .nav-item .nav-link {
+            color: #fff; /* Color blanco para los enlaces */
+            padding: 10px 15px; /* Espaciado interno de los enlaces */
+           /* text-transform: uppercase;  Texto en mayúsculas */
+        }
+
+        .navbar-nav .nav-item .nav-link:hover {
+            color: #cccccc; /* Color de los enlaces al pasar el ratón por encima */
+        }
+
+        .navbar-toggler {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 0.5%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+        }
+
+        .collapse.navbar-collapse {
+            justify-content: flex-end;
+        }
+    </style>
 </head>
 <body>
 <div th:fragment="navbar">
@@ -10,7 +45,6 @@
         <a class="navbar-brand" th:href="@{/}">
             <img th:src="@{../static/img/logo1.png}" style="height: 60px;" >
         </a>
-
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
