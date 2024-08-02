@@ -6,7 +6,7 @@ import java.security.SecureRandom;
 
 @Service
 public class GeneradorTokenService {
-    private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     private static final int TOKEN_LENGTH = 8;
     private final SecureRandom random = new SecureRandom();
 

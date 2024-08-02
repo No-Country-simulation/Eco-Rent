@@ -75,11 +75,9 @@ public class AlquilerBicicletaController {
       BindingResult bindingResult,
       Model model,
       @RequestParam("usuarioId") Long usuarioId) {
-
-    System.out.println("Entrando en el método alquilerBicicletaForm");
+    
 
     if (bindingResult.hasErrors()) {
-      System.out.println("Errores en el formulario: " + bindingResult.getAllErrors());
       model.addAttribute("tiposBicicleta", TipoBicicleta.values());
       model.addAttribute("alquiler", alquiler);
       return "alquiler-bicicleta-form";
