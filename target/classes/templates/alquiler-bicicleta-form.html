@@ -26,11 +26,16 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
         }
+        
+        img {
+            text-align: center;
+          
+        }
 
         h1 {
             color: #2c3e50;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .form-group {
@@ -131,7 +136,13 @@
 <body>
     <div th:replace="~{fragments/navbar :: navbar}"></div>
     <div class="container">
-        <h1>Alquiler de Bicicletas</h1>
+
+        <div class="text-center">
+            <img src="../static/img/logo1.png" alt="Logo de Alquiler de Bicicletas" class="img-fluid mb-3" style="max-width: 150px;">
+            <h1>Alquiler de Bicicletas</h1>
+        </div>
+        
+       
         <form action="/alquiler-bicicleta" method="post" class="needs-validation" novalidate>
             <input type="hidden" name="usuarioId" th:value="${usuario.id}">
             <div class="form-group">
