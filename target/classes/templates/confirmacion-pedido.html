@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Token</title>
+    <title>Confirmación de Pedido</title>
     <link rel="icon" type="image/png" sizes="64x64" href="../static/img/logo1.png">
     <link rel="stylesheet" href="../static/css/token.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -12,20 +12,22 @@
 <header th:replace="~{fragments/navbar :: navbar}"></header>
 <br><br><br><br>
 <main class="container mt-5">
-    <h3 class="text-center mb-4">Verificación de Token</h3>
+    <h3 class="text-center mb-4">Confirmación de Pedido</h3>
 
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form th:action="@{/verificar-token}" method="post">
-                <div class="form-group">
-                    <label for="token">Ingrese su token de verificación:</label>
-                    <input type="text" class="form-control" id="token" name="token" required>
+            <div th:if="${valido}">
+                <div class="alert alert-success">
+                    <h4 class="alert-heading">Pedido Confirmado</h4>
+                    <p>El monto a abonar es: $<span th:text="${monto}"></span></p>
                 </div>
-                <div class="text-center">
-                    <button type="submit" class="btn-verify">Verificar</button>
+            </div>
+            <div th:if="${!valido}">
+                <div class="alert alert-danger">
+                    <h4 class="alert-heading">Error</h4>
+                    <p th:text="${mensaje}"></p>
                 </div>
-            </form>
-
+            </div>
         </div>
     </div>
 </main>
