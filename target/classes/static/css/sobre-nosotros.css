@@ -252,3 +252,9 @@ h2 {
     outline: 2px solid #0077b5;
     outline-offset: 2px;
 }
+header, footer {
+    background-color: var(--color-verde-oscuro);
+    color: #4ac97a;
+    padding: 1rem;
+    text-align: center;
+}
