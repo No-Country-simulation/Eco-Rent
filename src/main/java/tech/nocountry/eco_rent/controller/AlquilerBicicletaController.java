@@ -1,5 +1,7 @@
 package tech.nocountry.eco_rent.controller;
 
+import ch.qos.logback.classic.net.SimpleSocketServer;
+import ch.qos.logback.core.net.SyslogOutputStream;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -54,6 +56,7 @@ public class AlquilerBicicletaController {
       model.addAttribute("alquiler", new Alquiler());
       model.addAttribute("tiposBicicleta", TipoBicicleta.values());
       model.addAttribute("usuario", usuario);
+      System.out.println("usuario id!!: " + usuario.getId());
       return "alquiler-bicicleta-form";
     } else {
       System.out.println("User not found, redirecting to registration");
@@ -87,6 +90,7 @@ public class AlquilerBicicletaController {
     // Log the user ID from the request parameter
     System.out.println("User ID from request: " + usuarioId);
 
+    System.out.println("usuario id response form: " + usuarioId);
     // Fetch the user from the database
     Usuario usuario =
             usuarioRepository
