@@ -227,28 +227,31 @@
             <a href="#" class="btn-shine">Tu aventura comienza aquí:</a>
         </div>
 
-        <form action="/alquiler-bicicleta" method="post" class="needs-validation" novalidate>
-            <input type="hidden" name="usuarioId" th:value="${usuario != null ? usuario.id : 0}">
-            <div class="form-group">
-                <label for="fechaRetiro">Fecha de Retiro:</label>
-                <input type="date" class="form-control" id="fechaRetiro" name="fechaRetiro" required>
-                <div class="invalid-feedback">Por favor, ingrese una fecha de retiro válida.</div>
-            </div>
-            <div class="form-group">
-                <label for="fechaEntrega">Fecha de Entrega:</label>
-                <input type="date" class="form-control" id="fechaEntrega" name="fechaEntrega" required>
-                <div class="invalid-feedback">Por favor, ingrese una fecha de entrega válida.</div>
-            </div>
-            <div class="form-group">
-                <label for="tipoBicicleta">Tipo de Bicicleta:</label>
-                <select class="form-control" id="tipoBicicleta" name="tipoBicicleta" required>
-                    <option th:each="tipo : ${tiposBicicleta}" th:value="${tipo}" th:text="${tipo}"></option>
-                </select>
-                <div class="invalid-feedback">Por favor, seleccione un tipo de bicicleta.</div>
-            </div>
-            <button type="submit" class="btn">Alquilar</button>
-        </form>
-    </div>
-    <div th:replace="~{fragments/footer :: footer}"></div>
+    <form action="/alquiler-bicicleta" method="post" class="needs-validation" novalidate>
+        <input type="hidden" name="usuarioId" th:value="${usuario != null ? usuario.id : 0}">
+        <div th:if="${usuario != null}">
+            <p>Usuario ID: <span th:text="${usuario.id}"></span></p>
+        </div>
+        <div class="form-group">
+            <label for="fechaRetiro">Fecha de Retiro:</label>
+            <input type="date" class="form-control" id="fechaRetiro" name="fechaRetiro" required>
+            <div class="invalid-feedback">Por favor, ingrese una fecha de retiro válida.</div>
+        </div>
+        <div class="form-group">
+            <label for="fechaEntrega">Fecha de Entrega:</label>
+            <input type="date" class="form-control" id="fechaEntrega" name="fechaEntrega" required>
+            <div class="invalid-feedback">Por favor, ingrese una fecha de entrega válida.</div>
+        </div>
+        <div class="form-group">
+            <label for="tipoBicicleta">Tipo de Bicicleta:</label>
+            <select class="form-control" id="tipoBicicleta" name="tipoBicicleta" required>
+                <option th:each="tipo : ${tiposBicicleta}" th:value="${tipo}" th:text="${tipo}"></option>
+            </select>
+            <div class="invalid-feedback">Por favor, seleccione un tipo de bicicleta.</div>
+        </div>
+        <button type="submit" class="btn">Alquilar</button>
+    </form>
+</div>
+<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>
