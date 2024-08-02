@@ -1,3 +1,115 @@
+body {
+    line-height: 1.6;
+    color: #333;
+}
+.beliefs-list li:hover {
+    transform: translateX(5px);
+    transition: transform 0.3s ease;
+}
+
+.about-us {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.highlight {
+    font-size: 1.2em;
+    color: #27ae60;
+    line-height: 1.6;
+}
+.highlight-text {
+    background-color: rgba(39, 174, 96, 0.1);
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+.content-columns {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.column {
+    flex: 1;
+}
+
+h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.beliefs-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.beliefs-list li {
+    margin-bottom: 15px;
+    padding-left: 30px;
+    position: relative;
+}
+
+.beliefs-list li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.growth-story, .call-to-action {
+    margin-top: 40px;
+}
+
+.slogan {
+    text-align: center;
+    font-size: 1.3em;
+    color: #27ae60;
+    margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+    .content-columns {
+        flex-direction: column;
+    }
+    
+    .founder {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .section-title {
+        font-size: 2em;
+    }
+}
+
+.about-us {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
 .founders {
     text-align: center;
     padding: 50px 0;
@@ -22,6 +134,7 @@
 
 .founder:hover {
     transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
 .founder img {
@@ -94,7 +207,7 @@
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .founder .linkedin-button:hover {
@@ -134,4 +247,8 @@
 .linkedin-button:hover .tooltip {
     visibility: visible;
     opacity: 1;
+}
+.linkedin-button:focus {
+    outline: 2px solid #0077b5;
+    outline-offset: 2px;
 }
