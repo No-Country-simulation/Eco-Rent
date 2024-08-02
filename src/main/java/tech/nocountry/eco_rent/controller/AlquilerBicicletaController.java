@@ -79,7 +79,10 @@ public class AlquilerBicicletaController {
 
   @PostMapping("/alquiler-bicicleta")
   public String alquilerBicicletaForm(
-          @Valid Alquiler alquiler, BindingResult bindingResult, Model model, @RequestParam("usuarioId") Long usuarioId) {
+      @Valid Alquiler alquiler,
+      BindingResult bindingResult,
+      Model model,
+      @RequestParam("usuarioId") Long usuarioId) {
 
     if (bindingResult.hasErrors()) {
       model.addAttribute("tiposBicicleta", TipoBicicleta.values());
@@ -90,12 +93,11 @@ public class AlquilerBicicletaController {
     // Log the user ID from the request parameter
     System.out.println("User ID from request: " + usuarioId);
 
-    System.out.println("usuario id response form: " + usuarioId);
     // Fetch the user from the database
     Usuario usuario =
-            usuarioRepository
-                    .findById(usuarioId)
-                    .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
+        usuarioRepository
+            .findById(usuarioId)
+            .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
 
     // Log the user found
     System.out.println("User found: " + usuario.getId());

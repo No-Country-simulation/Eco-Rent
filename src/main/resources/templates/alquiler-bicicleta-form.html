@@ -218,9 +218,9 @@
             <img src="../static/img/logo1.png" alt="Logo de Alquiler de Bicicletas" class="img-fluid mb-3" style="max-width: 150px;">
             <a href="#" class="btn-shine">Tu aventura comienza aquí:</a>
         </div>
-        
+
         <form action="/alquiler-bicicleta" method="post" class="needs-validation" novalidate>
-            <input type="hidden" name="usuarioId" th:value="${usuario.id}">
+            <input type="hidden" name="usuarioId" th:value="${usuario != null ? usuario.id : 0}">
             <div class="form-group">
                 <label for="fechaRetiro">Fecha de Retiro:</label>
                 <input type="date" class="form-control" id="fechaRetiro" name="fechaRetiro" required>
@@ -234,20 +234,10 @@
             <div class="form-group">
                 <label for="tipoBicicleta">Tipo de Bicicleta:</label>
                 <select class="form-control" id="tipoBicicleta" name="tipoBicicleta" required>
-                    <option value="" disabled selected>Seleccione un tipo de bicicleta</option>
-                    <option value="montana">Bicicleta de montaña</option>
-                    <option value="carretera">Bicicleta de carretera</option>
-                    <option value="hibrida">Bicicleta híbrida</option>
-                    <option value="urbana">Bicicleta urbana</option>
-                    <option value="plegable">Bicicleta plegable</option>
-                    <option value="electrica">Bicicleta eléctrica</option>
-                    <option value="bmx">Bicicleta BMX</option>
-                    <option value="gravel">Bicicleta gravel</option>
-                    <option value="cruiser">Bicicleta cruiser</option>
+                    <option th:each="tipo : ${tiposBicicleta}" th:value="${tipo}" th:text="${tipo}"></option>
                 </select>
                 <div class="invalid-feedback">Por favor, seleccione un tipo de bicicleta.</div>
             </div>
-            
             <button type="submit" class="btn">Alquilar</button>
         </form>
     </div>
