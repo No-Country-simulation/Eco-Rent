@@ -41,6 +41,13 @@ public class AlquilerBicicletaController {
 
   @GetMapping("/alquiler-bicicleta")
   public String alquilerBicicleta(Model model) {
+    // Log to check if usuario is present in the model
+    if (model.containsAttribute("usuario")) {
+      Usuario usuario = (Usuario) model.getAttribute("usuario");
+      System.out.println("Usuario in model: " + usuario.getId());
+    } else {
+      System.out.println("Usuario not in model");
+    }
     model.addAttribute("email", new String());
     return "alquiler-bicicleta";
   }
