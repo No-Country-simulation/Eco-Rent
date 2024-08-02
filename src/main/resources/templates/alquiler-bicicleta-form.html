@@ -221,19 +221,12 @@
         });
     </script>
 </head>
-
 <body>
-
-<div th:replace="~{fragments/navbar :: navbar}"></div>
-
 <div class="container">
-
     <div class="text-center">
-        <img src="../static/img/logo1.png" alt="Logo de Alquiler de Bicicletas" class="img-fluid mb-3"
-             style="max-width: 150px;">
+        <img src="../static/img/logo1.png" alt="Logo de Alquiler de Bicicletas" class="img-fluid mb-3" style="max-width: 150px;">
         <a href="#" class="btn-shine">Tu aventura comienza aquí:</a>
     </div>
-
     <form action="/alquiler-bicicleta" method="post" class="needs-validation" novalidate>
         <input type="hidden" name="usuarioId" th:value="${usuario != null ? usuario.id : 0}">
         <div th:if="${usuario != null}">
@@ -259,6 +252,5 @@
         <button type="submit" class="btn">Alquilar</button>
     </form>
 </div>
-<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>
