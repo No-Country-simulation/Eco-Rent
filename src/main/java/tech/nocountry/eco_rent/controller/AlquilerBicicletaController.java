@@ -1,5 +1,7 @@
 package tech.nocountry.eco_rent.controller;
 
+import ch.qos.logback.classic.net.SimpleSocketServer;
+import ch.qos.logback.core.net.SyslogOutputStream;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,7 +55,8 @@ public class AlquilerBicicletaController {
       System.out.println("User found: " + usuario.getId());
       model.addAttribute("alquiler", new Alquiler());
       model.addAttribute("tiposBicicleta", TipoBicicleta.values());
-      model.addAttribute("usuario", usuario); // Asegurarse de que el usuario se añade al modelo
+      model.addAttribute("usuario", usuario);
+      System.out.println("usuario id!!: " + usuario.getId());
       return "alquiler-bicicleta-form";
     } else {
       System.out.println("User not found, redirecting to registration");
@@ -76,7 +79,10 @@ public class AlquilerBicicletaController {
 
   @PostMapping("/alquiler-bicicleta")
   public String alquilerBicicletaForm(
-          @Valid Alquiler alquiler, BindingResult bindingResult, Model model, @RequestParam("usuarioId") Long usuarioId) {
+      @Valid Alquiler alquiler,
+      BindingResult bindingResult,
+      Model model,
+      @RequestParam("usuarioId") Long usuarioId) {
 
     if (bindingResult.hasErrors()) {
       model.addAttribute("tiposBicicleta", TipoBicicleta.values());
@@ -89,9 +95,9 @@ public class AlquilerBicicletaController {
 
     // Fetch the user from the database
     Usuario usuario =
-            usuarioRepository
-                    .findById(usuarioId)
-                    .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
+        usuarioRepository
+            .findById(usuarioId)
+            .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
 
     // Log the user found
     System.out.println("User found: " + usuario.getId());
