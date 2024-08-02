@@ -71,34 +71,56 @@ public class AlquilerBicicletaController {
 
   @PostMapping("/alquiler-bicicleta")
   public String alquilerBicicletaForm(
-      @Valid Alquiler alquiler,
-      BindingResult bindingResult,
-      Model model,
-      @RequestParam("usuarioId") Long usuarioId) {
-    
+          @Valid Alquiler alquiler,
+          BindingResult bindingResult,
+          Model model,
+          @RequestParam("usuarioId") Long usuarioId) {
+
+    System.out.println("Entrando en el método alquilerBicicletaForm");
 
     if (bindingResult.hasErrors()) {
+      System.out.println("Errores en el formulario: " + bindingResult.getAllErrors());
       model.addAttribute("tiposBicicleta", TipoBicicleta.values());
       model.addAttribute("alquiler", alquiler);
       return "alquiler-bicicleta-form";
     }
 
     Usuario usuario =
-        usuarioRepository
-            .findById(usuarioId)
-            .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
+            usuarioRepository
+                    .findById(usuarioId)
+                    .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
 
     alquiler.setUsuario(usuario);
 
-    String token = tokenService.generateToken();
-    alquiler.setToken(token);
-    
+    String token;
+    try {
+      token = tokenService.generateRetiroToken();
+    } catch (Exception e) {
+      System.out.println("Error al generar el token: " + e.getMessage());
+      model.addAttribute("tiposBicicleta", TipoBicicleta.values());
+      model.addAttribute("alquiler", alquiler);
+      return "alquiler-bicicleta-form";
+    }
 
-    alquilerRepository.save(alquiler);
+    alquiler.setToken(token);
+
+    try {
+      alquilerRepository.save(alquiler);
+    } catch (Exception e) {
+      System.out.println("Error al guardar el alquiler: " + e.getMessage());
+      model.addAttribute("tiposBicicleta", TipoBicicleta.values());
+      model.addAttribute("alquiler", alquiler);
+      return "alquiler-bicicleta-form";
+    }
 
     String subject = "Confirmación de Alquiler de Bicicleta";
     String text = "Gracias por alquilar una bicicleta. Su token de confirmación es: " + token;
-    emailService.sendEmail(alquiler.getUsuario().getEmail(), subject, text);
+
+    try {
+      emailService.sendEmail(alquiler.getUsuario().getEmail(), subject, text);
+    } catch (Exception e) {
+      System.out.println("Error al enviar el correo: " + e.getMessage());
+    }
 
     model.addAttribute("token", token);
     return "redirect:/exito";
