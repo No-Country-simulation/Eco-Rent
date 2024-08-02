@@ -28,8 +28,15 @@ public class TokenController {
     }
 
     @PostMapping("/verificar-token")
-    public String verificarToken(@RequestParam("token") String token, Model model) {
+    public String verificarToken(@RequestParam(value = "token", required = false) String token, Model model) {
         System.out.println("Token recibido: " + token);
+        if (token == null || token.isEmpty()) {
+            System.out.println("Token no proporcionado.");
+            model.addAttribute("valido", false);
+            model.addAttribute("mensaje", "Token no proporcionado.");
+            return "verificacion-token";
+        }
+
         Alquiler alquiler = alquilerRepository.findByToken(token);
 
         if (alquiler != null && alquiler.getEstado() == EstadoAlquiler.PENDIENTE_PARA_RECOGER) {
@@ -45,6 +52,7 @@ public class TokenController {
 
         return "verificacion-token";
     }
+
 
 
 
