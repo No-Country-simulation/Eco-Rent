@@ -10,11 +10,19 @@ public class GeneradorTokenService {
     private static final int TOKEN_LENGTH = 8;
     private final SecureRandom random = new SecureRandom();
 
-    public String generateToken() {
+    private String generateToken() {
         StringBuilder token = new StringBuilder(TOKEN_LENGTH);
         for (int i = 0; i < TOKEN_LENGTH; i++) {
             token.append(CHARACTERS.charAt(random.nextInt(CHARACTERS.length())));
         }
         return token.toString();
+    }
+
+    public String generateRetiroToken() {
+        return "R" + generateToken();
+    }
+
+    public String generateEntregaToken() {
+        return "E" + generateToken();
     }
 }

@@ -1,7 +1,7 @@
 package tech.nocountry.eco_rent.model;
 
 public enum EstadoAlquiler {
-  PARA_RETIRO,
+  PENDIENTE_PARA_RECOGER,
   EN_USO,
   FINALIZADO
 }

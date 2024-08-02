@@ -90,7 +90,7 @@ public class AlquilerBicicletaController {
 
     alquiler.setUsuario(usuario);
 
-    String token = tokenService.generateToken();
+    String token = tokenService.generateRetiroToken();
     alquiler.setToken(token);
     
 

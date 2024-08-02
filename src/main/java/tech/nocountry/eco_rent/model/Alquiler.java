@@ -41,5 +41,5 @@ public class Alquiler {
   @NotNull(message = "El estado no puede estar vacío")
   @Enumerated(EnumType.STRING)
   @Column(name = "estado")
-  private EstadoAlquiler estado = EstadoAlquiler.PARA_RETIRO;
+  private EstadoAlquiler estado = EstadoAlquiler.PENDIENTE_PARA_RECOGER;
 }
