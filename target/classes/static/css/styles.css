@@ -73,6 +73,11 @@ header nav ul li a:hover, header nav ul li a:focus, .nav-link:hover, .nav-link:f
     color: #00980d;
 }
 
+.banner p {
+    font-size: 1.2rem;
+    font-family: arial;
+    color: #1a1818;
+}
 .info {
     display: flex;
     justify-content: space-around;
