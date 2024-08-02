@@ -1,10 +1,9 @@
 package tech.nocountry.eco_rent.controller;
 
-import ch.qos.logback.classic.net.SimpleSocketServer;
-import ch.qos.logback.core.net.SyslogOutputStream;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import tech.nocountry.eco_rent.model.Alquiler;
 import tech.nocountry.eco_rent.model.EstadoAlquiler;
 import tech.nocountry.eco_rent.model.TipoBicicleta;
-import org.springframework.ui.Model;
 import tech.nocountry.eco_rent.model.Usuario;
 import tech.nocountry.eco_rent.repository.AlquilerRepository;
 import tech.nocountry.eco_rent.repository.UsuarioRepository;
@@ -29,10 +27,10 @@ public class AlquilerBicicletaController {
 
   @Autowired
   public AlquilerBicicletaController(
-      AlquilerRepository alquilerRepository,
-      UsuarioRepository usuarioRepository,
-      GeneradorTokenService tokenService,
-      EmailService emailService) {
+          AlquilerRepository alquilerRepository,
+          UsuarioRepository usuarioRepository,
+          GeneradorTokenService tokenService,
+          EmailService emailService) {
     this.alquilerRepository = alquilerRepository;
     this.usuarioRepository = usuarioRepository;
     this.tokenService = tokenService;
@@ -41,32 +39,19 @@ public class AlquilerBicicletaController {
 
   @GetMapping("/alquiler-bicicleta")
   public String alquilerBicicleta(Model model) {
-    // Log to check if usuario is present in the model
-    if (model.containsAttribute("usuario")) {
-      Usuario usuario = (Usuario) model.getAttribute("usuario");
-      System.out.println("Usuario in model: " + usuario.getId());
-    } else {
-      System.out.println("Usuario not in model");
-    }
     model.addAttribute("email", new String());
     return "alquiler-bicicleta";
   }
 
   @PostMapping("/check-email")
   public String checkEmail(@RequestParam("email") String email, Model model) {
-    // Log the email received
-    System.out.println("Received email: " + email);
-
     Usuario usuario = usuarioRepository.findByEmail(email);
     if (usuario != null) {
-      System.out.println("User found: " + usuario.getId());
       model.addAttribute("alquiler", new Alquiler());
       model.addAttribute("tiposBicicleta", TipoBicicleta.values());
       model.addAttribute("usuario", usuario);
-      System.out.println("usuario id!!: " + usuario.getId());
       return "alquiler-bicicleta-form";
     } else {
-      System.out.println("User not found, redirecting to registration");
       model.addAttribute("usuario", new Usuario());
       return "registro-usuario";
     }
@@ -94,42 +79,21 @@ public class AlquilerBicicletaController {
     if (bindingResult.hasErrors()) {
       model.addAttribute("tiposBicicleta", TipoBicicleta.values());
       model.addAttribute("alquiler", alquiler);
-
-      // Agregar trazas para identificar los errores
-      bindingResult.getFieldErrors().forEach(error -> {
-        System.out.println("Field: " + error.getField() + ", Error: " + error.getDefaultMessage());
-      });
-
-      System.out.println("PASA POR ACACACACA");
       return "alquiler-bicicleta-form";
     }
 
-    // Log the user ID from the request parameter
-    System.out.println("User ID from request: " + usuarioId);
+    Usuario usuario = usuarioRepository.findById(usuarioId)
+            .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
 
-    // Fetch the user from the database
-    Usuario usuario =
-            usuarioRepository
-                    .findById(usuarioId)
-                    .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
-
-    // Log the user found
-    System.out.println("User found: " + usuario.getId());
-
-    // Set the user in the rental
     alquiler.setUsuario(usuario);
 
-    // Generate token
     String token = tokenService.generateToken();
     alquiler.setToken(token);
 
-    // Set the rental state to PARA_RETIRO
     alquiler.setEstado(EstadoAlquiler.PARA_RETIRO);
 
-    // Save the rental
     alquilerRepository.save(alquiler);
 
-    // Send email
     String subject = "Confirmación de Alquiler de Bicicleta";
     String text = "Gracias por alquilar una bicicleta. Su token de confirmación es: " + token;
     emailService.sendEmail(alquiler.getUsuario().getEmail(), subject, text);
